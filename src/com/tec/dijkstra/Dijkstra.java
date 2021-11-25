@@ -7,44 +7,45 @@ public class Dijkstra
     public  double cost[][] = new double[100][100];
 
 
-    public void calc(int nodos,int inicio, int end, double[][] matriz)
-    {
-        int flag[] = new int[nodos+1];
+    public void calc(int nodos,int inicio, int end, double[][] matriz) {
+        int flag[] = new int[nodos + 1];
         int i = 1;
-        int minpos=1;
+        int minpos = 1;
         int k;
         int c;
         double minimum;
 
         //for(i=1;i==nodos;i++)
-        while (i < nodos)
-        {
-            flag[i]=0;
-            this.distance[i]=matriz[inicio][i];
+        while (i < nodos) {
+            flag[i] = 0;
+            this.distance[i] = matriz[inicio][i];
             i++;
         }
-        c=2;
-        while(c<nodos)
-        {
-            minimum=99;
-            for(k=1;k<=nodos;k++)
-            {
-                if(this.distance[k]<minimum && flag[k]!=1)
-                {
-                    minimum=this.distance[i];
-                    minpos=k;
+        c = 2;
+        while (c < nodos) {
+            minimum = 99;
+            for (k = 1; k < nodos; k++) {
+                if (this.distance[k] < minimum && flag[k] != 1) {
+                    minimum = this.distance[i];
+                    minpos = k;
                 }
             }
-            flag[minpos]=1;
+            flag[minpos] = 1;
             c++;
-            for(k=1;k<nodos;k++){
-                if(this.distance[minpos]+matriz[minpos][k] <  this.distance[k] && flag[k]!=1 )
-                    this.distance[k]=this.distance[minpos]+matriz[minpos][k];
+            for (k = 1; k < nodos; k++) {
+                if (this.distance[minpos] + matriz[minpos][k] < this.distance[k] && flag[k] != 1)
+                    this.distance[k] = this.distance[minpos] + matriz[minpos][k];
             }
         }
-
+        System.out.println("El camino más corto es: \n");
+        int x = 0;
+        while (x < end){
+            x++;
+        }
+        System.out.println("Desde :" + inicio + "\t hasta :" + end + "\t el costo mínimo es: " + distance[end] + "\t");
     }
-    public static void main(String args[])
+
+    /*public static void main(String args[])
     {
         Dijkstra d = new Dijkstra();
         int node = 4;
@@ -73,7 +74,7 @@ public class Dijkstra
                 {194.03, 143.56, 118.82, 188.21, 126.83, 96.18, 103.11, 137.9, 74.79, 55.14, 51.67, 95.9, 147.5, 147.48, 137.7, 55.51, 0.0, 54.68},
                 {144.32, 88.87, 76.24, 148.66, 94.38, 112.77, 133.14, 178.29, 108.16, 82.05, 105.46, 150.39, 201.95, 200.51, 188.78, 109.72, 54.65, 0.0}};
         */
-        d.calc(node,verticeInicial, 2, graph);
+        //d.calc(node,verticeInicial, 2, graph);
         /*int nodes,source,i,j;
         Scanner in = new Scanner(System.in);
         System.out.println("Enter the Number of Nodes \n");
@@ -92,11 +93,11 @@ public class Dijkstra
         source=in.nextInt();*/
 
         //d.calc(nodes,source);
-        System.out.println("The Shortest Path from Source \t"+verticeInicial+"\t to all other vertices are : \n");
-        for(int i=1; i<=node; i++)
-            if(i!=verticeInicial)
-                System.out.println("source :"+verticeInicial+"\t destination :"+i+"\t MinCost is :"+d.distance[i]+"\t");
+        //System.out.println("The Shortest Path from Source \t"+verticeInicial+"\t to all other vertices are : \n");
+        //for(int i=1; i<=node; i++)
+          //  if(i!=verticeInicial)
+            //    System.out.println("source :"+verticeInicial+"\t destination :"+i+"\t MinCost is :"+d.distance[i]+"\t");
 
 
-    }
+   // }*/
 }

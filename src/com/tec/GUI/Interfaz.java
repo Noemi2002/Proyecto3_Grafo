@@ -103,23 +103,40 @@ public class Interfaz extends javax.swing.JFrame {
         jButton1.setText("Calcular Ruta");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                String[] lista = new String[] {"Liberia", "Nicoya", "Monteverde", "Upala", "La Fortuna", "Guápiles",
+                        "Siquirres", "Limón", "Turrialba", "Cartago", "San Isidro de El General", "Buenos Aires", "San Vito",
+                        "Golfito", "Punto Jimenez", "Uvita", "Quepos", "Jacó"};
                 ObtenerCiudades objCiudades = null;
                 String Selected1 = jComboBox1.getItemAt(jComboBox1.getSelectedIndex());
                 String Selected2 = jComboBox3.getItemAt(jComboBox3.getSelectedIndex());
-                jTextArea3.setText(Selected1 + "\n" +  Selected2); // Area 1
-                /*
+                int inicio = 0;
+                int ultimo = 0;
+
                 try {
                     objCiudades = new ObtenerCiudades();
+                    //ArrayList<Ciudad> lista = objCiudades.ConstruirCiudades();
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
+
+                for (int u = 0; u < lista.length; u++){
+                    if (lista[u] == Selected1){
+                        inicio = u;
+                    }
+                }
+
+                for (int h = 0; h < lista.length; h++){
+                    if (lista[h] == Selected2){
+                        ultimo = h;
+                    }
+                }
                 Dijkstra dijkstra = new Dijkstra();
-                ArrayList<Ciudad> listadeciudades = objCiudades.getCiudades();
-                dijkstra.calc(18, 1, 2, objCiudades.getMatriz());*/
+                dijkstra.calc(18, inicio, ultimo, objCiudades.getMatriz());
 
-
+                jTextArea3.setText(Selected1 + "\n" +  Selected2); // Area 1
                 }
         });
 

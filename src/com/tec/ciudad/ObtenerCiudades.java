@@ -44,7 +44,7 @@ public class ObtenerCiudades {
                 matriztemp[f][c] = distan;
             }
         }
-        System.out.println(matriztemp);
+        //System.out.println(matriztemp);
         return matriztemp;
     }
     //Metodo para imprimir los datos de las matrices en consola
