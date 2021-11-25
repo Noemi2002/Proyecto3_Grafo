@@ -3,11 +3,11 @@ package com.tec.GUI;
 import com.tec.ciudad.Ciudad;
 import com.tec.ciudad.ObtenerCiudades;
 import com.tec.dijkstra.Dijkstra;
-
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ContainerEvent;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -51,6 +51,18 @@ public class Interfaz extends javax.swing.JFrame {
         jTextArea3 = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
 
+
+        ArrayList<Ciudad> listadeciudades =  null;
+        try {
+            listadeciudades = ObtenerListaCiudades();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        List<String> listanombresciudad = ObtenerNombresCiudades(listadeciudades);
+        String[] CadenaNombresString = ObtenerCadenaString(listanombresciudad);
+        System.out.println(CadenaNombresString);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTextArea1.setColumns(20);
@@ -62,10 +74,7 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel2.setText("Ciudad 2");
 
         //J1
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Liberia", "Nicoya",
-                "Monteverde", "Upala", "La Fortuna", "Guápiles", "Siquirres", "Limón", "Turrialba",
-                "Cartago", "San Isidro de El General", "Buenos Aires", "San Vito",
-                "Golfito", "Punto Jimenez", "Uvita", "Quepos", "Jacó" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(CadenaNombresString));
 
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,10 +84,7 @@ public class Interfaz extends javax.swing.JFrame {
         });
 
         //J2
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Liberia", "Nicoya",
-                "Monteverde", "Upala", "La Fortuna", "Guápiles", "Siquirres", "Limón", "Turrialba",
-                "Cartago", "San Isidro de El General", "Buenos Aires", "San Vito",
-                "Golfito", "Punto Jimenez", "Uvita", "Quepos", "Jacó" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(CadenaNombresString));
 
         jComboBox3.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
@@ -105,59 +111,28 @@ public class Interfaz extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
-                //Lista de las ciudades
-                String[] lista = new String[] {"Liberia", "Nicoya", "Monteverde", "Upala", "La Fortuna", "Guápiles",
-                        "Siquirres", "Limón", "Turrialba", "Cartago", "San Isidro de El General", "Buenos Aires", "San Vito",
-                        "Golfito", "Punto Jimenez", "Uvita", "Quepos", "Jacó"};
 
-                ObtenerCiudades objCiudades = null;
 
                 //Se obtienen los valores de los ComboBox
                 String Selected1 = jComboBox1.getItemAt(jComboBox1.getSelectedIndex());
                 String Selected2 = jComboBox3.getItemAt(jComboBox3.getSelectedIndex());
 
                 //Variables para cambiar el nombre los lugares a números, que corresponden a los índices
-                int inicio = 0;
-                int ultimo = 0;
+                int inicio = listanombresciudad.indexOf(Selected1);
+                int ultimo = listanombresciudad.indexOf(Selected2);
 
-                //Se inicializa la varible para obtener las variables de las ciudades
-                try {
-                    objCiudades = new ObtenerCiudades();
-                    //ArrayList<Ciudad> lista = objCiudades.ConstruirCiudades();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-
-                //Se intercambian los nombres por los indices
-                for (int u = 0; u < lista.length; u++){
-                    if (lista[u] == Selected1){
-                        inicio = u;
-                    }
-                }
-
-                for (int h = 0; h < lista.length; h++){
-                    if (lista[h] == Selected2){
-                        ultimo = h;
-                    }
-                }
                 //Se crea la instancia del algoritmo y se llama a la función que realiza
                 //los cálculos con la matriz respectiva
                 Dijkstra dijkstra = new Dijkstra();
 
-                double resultado = dijkstra.calc(18, inicio, ultimo, objCiudades.getMatriz());
+                double resultado = dijkstra.calc(18, inicio, ultimo, ObtenerMatriz());
 
-                jTextArea3.setText("La distancia más corta entre "+ Selected1 + "\n" + " y " + Selected2  +  " es de: " +resultado); // Area 1
+                jTextArea3.setText("La distancia más corta entre "+ Selected1 + "\n" + " y " + Selected2  +  " es de: " +resultado +"km"); // Area 1
                 }
         });
 
         //J3
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Liberia", "Nicoya",
-                "Monteverde", "Upala", "La Fortuna", "Guápiles", "Siquirres", "Limón", "Turrialba",
-                "Cartago", "San Isidro de El General", "Buenos Aires", "San Vito",
-                "Golfito", "Punto Jimenez", "Uvita", "Quepos", "Jacó" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(CadenaNombresString));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -169,17 +144,22 @@ public class Interfaz extends javax.swing.JFrame {
 
         jButton2.setText("Buscar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(java.awt.event.ActionEvent evt) throws IndexOutOfBoundsException{
+                ArrayList<Ciudad> lalistadeciudades = new ArrayList<>(listanombresciudad.size());
 
                 try {
-
+                    lalistadeciudades = ObtenerListaCiudades();
                     jButton2ActionPerformed(evt);
                     String Selected = jComboBox2.getItemAt(jComboBox2.getSelectedIndex());
-                    Ciudad lig = new Ciudad(Selected);
-                    System.out.println(Selected);
-
-                    jTextArea1.setText(String.valueOf(lig)); // Area 2
-
+                    int laciudad = lalistadeciudades.indexOf(Selected);
+                    System.out.println("El indice es "+laciudad);
+                    System.out.println("La lista de ciudades tiene "+lalistadeciudades.size()+" elementos");
+                    Ciudad ciudadselec = lalistadeciudades.get(laciudad);
+                    System.out.println(ciudadselec.getNombre());
+                    List<String> loslugares = ciudadselec.getListalugares();
+                    for (String lugar : loslugares){
+                        System.out.println("Los lugares son "+lugar);}
+                    jTextArea1.setText(String.valueOf(loslugares)); // Area 2
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
@@ -202,7 +182,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         jLabel6.setText("Contratiempos");
 
-        jLabel7.setIcon(new ImageIcon("Imagenes/Mapa.png")); // NOI18N
+        //jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/Imagenes/Mapa.jpg"))); // NOI18N
 
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
@@ -307,8 +287,41 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) throws IOException, InterruptedException {//GEN-FIRST:event_jButton2ActionPerformed
+        String Selected = jComboBox2.getItemAt(jComboBox2.getSelectedIndex());
 
     }
+    public ArrayList<Ciudad> ObtenerListaCiudades() throws IOException, InterruptedException {
+        ObtenerCiudades objciudad = new ObtenerCiudades();
+        ArrayList<Ciudad> lista = objciudad.ConstruirCiudades();
+        return lista;
+    }
+    public List<String> ObtenerNombresCiudades(ArrayList<Ciudad> listadeciudades){
+        List<String> listanombres = new ArrayList<>();
+        for (Ciudad ciudad : listadeciudades){
+            int i = listadeciudades.indexOf(ciudad);
+            listanombres.add(i, ciudad.getNombre());
+        }
+        return listanombres;
+    }
+    public  String[] ObtenerCadenaString(List<String> listadenombres){
+        String[] cadena = new String[listadenombres.size()];
+        for (String nombre : listadenombres){
+            cadena[listadenombres.indexOf(nombre)]=nombre;
+        }
+        return cadena;
+    }
+    public double[][] ObtenerMatriz(){
+        ObtenerCiudades objCiudad = null;
+        try {
+            objCiudad = new ObtenerCiudades();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return  objCiudad.getMatriz();
+    }
+
 
 //GEN-LAST:event_jButton2ActionPerformed
 
@@ -347,6 +360,7 @@ public class Interfaz extends javax.swing.JFrame {
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -368,17 +382,4 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
-    /*class backgroundPanel extends JPanel {
-        private Image image;
-
-        @Override
-        public void paint(Graphics g) {
-            image = new ImageIcon(getClass().getResource("C:\\Users\\cmont\\Documents\\TEC\\Semestre 2\\Datos 1\\Rama\\Proyecto3_Grafo\\Imagenes\\Mapa.jpg")).getImage();
-            g.drawImage(image, 0, 0, getWidth(), 500, rootPane);
-            setOpaque(false);
-            super.paint(g);
-        }
-
-
-    }*/
 }

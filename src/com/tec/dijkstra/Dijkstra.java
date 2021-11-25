@@ -60,17 +60,8 @@ public class Dijkstra
         return distance[end];
     }
 
-    /*public static void main(String args[])
-    {
-        Dijkstra d = new Dijkstra();
-        int node = 4;
-        int verticeInicial = 2;
-        double[][] graph = {{0, 3, 999, 7},
-                {3, 0, 4, 2},
-                {999, 4, 0, 5},
-                {7, 2, 5,0}};
-        /*double[][] graph = {
-                {0.0, 75.78, 78.31, 54.98, 89.26, 186.67, 219.54, 272.08, 208.98, 187.57, 237.44, 282.79, 337.36, 340.5, 330.99, 248.22, 193.65, 144.15},
+    /*
+                {{0.0, 75.78, 78.31, 54.98, 89.26, 186.67, 219.54, 272.08, 208.98, 187.57, 237.44, 282.79, 337.36, 340.5, 330.99, 248.22, 193.65, 144.15},
                 {75.78, 0.0, 67.87, 110.94, 96.47, 174.01, 202.91, 253.68, 183.73, 158.11, 193.49, 238.79, 290.58, 288.38, 275.4, 198.39, 143.37, 88.8},
                 {78.38, 67.82, 0.0, 72.41, 29.36, 113.73, 145.47, 197.94, 131.99, 109.61, 159.82, 204.96, 259.78, 264.15, 255.99, 171.92, 118.71, 76.22},
                 {54.95, 110.91, 72.39, 0.0, 62.88, 154.2, 187.15, 238.23, 183.0, 166.42, 223.35, 266.52, 321.59, 329.32, 323.34, 238.43, 188.0, 148.61},
@@ -89,30 +80,5 @@ public class Dijkstra
                 {194.03, 143.56, 118.82, 188.21, 126.83, 96.18, 103.11, 137.9, 74.79, 55.14, 51.67, 95.9, 147.5, 147.48, 137.7, 55.51, 0.0, 54.68},
                 {144.32, 88.87, 76.24, 148.66, 94.38, 112.77, 133.14, 178.29, 108.16, 82.05, 105.46, 150.39, 201.95, 200.51, 188.78, 109.72, 54.65, 0.0}};
         */
-        //d.calc(node,verticeInicial, 2, graph);
-        /*int nodes,source,i,j;
-        Scanner in = new Scanner(System.in);
-        System.out.println("Enter the Number of Nodes \n");
-        nodes = in.nextInt();
-        //nodes = 4;
-        Dijkstra d = new Dijkstra();
-        System.out.println("Enter the Cost Matrix Weights: \n");
-        for(i=1;i<=nodes;i++)
-            for(j=1;j<=nodes;j++)
-            {
-                d.cost[i][j]=in.nextDouble();
-                if(d.cost[i][j]==0)
-                    d.cost[i][j]=999;
-            }
-        System.out.println("Enter the Source Vertex :\n");
-        source=in.nextInt();*/
 
-        //d.calc(nodes,source);
-        //System.out.println("The Shortest Path from Source \t"+verticeInicial+"\t to all other vertices are : \n");
-        //for(int i=1; i<=node; i++)
-          //  if(i!=verticeInicial)
-            //    System.out.println("source :"+verticeInicial+"\t destination :"+i+"\t MinCost is :"+d.distance[i]+"\t");
-
-
-   // }*/
 }
