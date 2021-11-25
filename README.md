@@ -1,6 +1,6 @@
 # *Proyecto3_Grafo*
 
 
-## Diagrama de clases [Link](https://dev.azure.com/Alonso/Proyecto%20Calculadore)
+## Diagrama de clases [Link](https://github.com/Noemi2002/Proyecto3_Grafo/wiki/Diagrama-de-clases)
 
 
