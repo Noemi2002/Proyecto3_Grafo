@@ -118,6 +118,7 @@ public class Interfaz extends javax.swing.JFrame {
                 //Se obtienen los valores de los ComboBox
                 String Selected1 = jComboBox1.getItemAt(jComboBox1.getSelectedIndex());
                 String Selected2 = jComboBox3.getItemAt(jComboBox3.getSelectedIndex());
+                String contratiempos = jTextField1.getText();
 
                 //Variables para cambiar el nombre los lugares a números, que corresponden a los índices
                 int inicio = listanombresciudad.indexOf(Selected1);
