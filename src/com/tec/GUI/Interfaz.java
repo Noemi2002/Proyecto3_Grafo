@@ -1,5 +1,9 @@
 package com.tec.GUI;
 
+import com.tec.ciudad.Ciudad;
+import com.tec.ciudad.ObtenerCiudades;
+import com.tec.dijkstra.Dijkstra;
+
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -86,8 +90,20 @@ public class Interfaz extends javax.swing.JFrame {
         jButton1.setText("Calcular Ruta");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
+                ObtenerCiudades objCiudades = null;
+                try {
+                    objCiudades = new ObtenerCiudades();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Dijkstra dijkstra = new Dijkstra();
+                ArrayList<Ciudad> listadeciudades = objCiudades.getCiudades();
+                dijkstra.calc(18, 1, 2, objCiudades.getMatriz());
+
+
+                }
         });
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Liberia", "Nicoya",
@@ -98,6 +114,7 @@ public class Interfaz extends javax.swing.JFrame {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
 
                 jComboBox3ComponentAdded(evt);
+
             }
 
             private void jComboBox3ComponentAdded(ContainerEvent evt) {
@@ -120,6 +137,9 @@ public class Interfaz extends javax.swing.JFrame {
 
                 try {
                     jButton2ActionPerformed(evt);
+                    String Selected = jComboBox2.getItemAt(jComboBox2.getSelectedIndex());
+                    System.out.println(Selected);
+                    jTextArea1.setText(Selected);
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
