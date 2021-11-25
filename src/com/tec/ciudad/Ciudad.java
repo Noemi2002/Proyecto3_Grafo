@@ -17,6 +17,7 @@ public class Ciudad {
     private double latitud;
     private double longitud;
     private List<String> listalugares = new ArrayList();
+    private int poblacion;
 
     /**
      * Instantiates a new Ciudad.
@@ -25,9 +26,10 @@ public class Ciudad {
      * @throws IOException          the io exception
      * @throws InterruptedException the interrupted exception
      */
-    public Ciudad(String _nombre) throws IOException, InterruptedException {
+    public Ciudad(String _nombre, int habitantes) throws IOException, InterruptedException {
         //Se recibe el nombre de la ciudad
         this.nombre = _nombre;
+        int poblacion = habitantes;
         //Se crean dos instancias, mapper para procesar el Json recibido de Geocoder
         ObjectMapper mapper = new ObjectMapper();
         Geocoder geocoder = new Geocoder();
@@ -125,5 +127,8 @@ public class Ciudad {
      */
     public void setListalugares(List<String> listalugares) {
         this.listalugares = listalugares;
+    }
+    public int getPoblación(){
+        return poblacion;
     }
 }

@@ -66,6 +66,24 @@ public class Dijkstra
             elminimo[2]= (int)distance[end];
         return elminimo;
     }
+    public int ObtenerAtraso(String contratiempo){
+        int contint = 0;
+        if (!contratiempo.equals("")){
+            contint = Integer.parseInt(contratiempo);
+            if (contint>=60){
+
+            }
+        }
+        return contint;
+    }
+    public void AjustarMinutos(int _tiempoextra, long _horas){
+        if (_tiempoextra>60){
+            this.tiempo =_tiempoextra-60;
+            this.horas=_horas+1;
+        }
+    }
+
+
 
     /*public static void main(String args[])
     {

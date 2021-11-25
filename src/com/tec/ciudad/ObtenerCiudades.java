@@ -22,11 +22,14 @@ public class ObtenerCiudades {
         List<String> listanombreciudades = Arrays.asList("Liberia", "Nicoya", "Monteverde", "Upala", "La Fortuna", "Guápiles",
                 "Siquirres", "Limón", "Turrialba", "Cartago", "San Isidro de El General", "Buenos Aires", "San Vito",
                 "Golfito", "Punto Jimenez", "Uvita", "Quepos", "Jacó");
+        List<Integer> listacantidadhabitantes = Arrays.asList(13000,15200,3000,7899,4039, 7893,
+                49700,34601,6700,32000,14000,11782,8300,6782,3210,7387,8000,6732);
         //Se crea un array con el tamaño de acuerdo a la cantidad de nombres de ciudades
         ArrayList<Ciudad> listadeciudades = new ArrayList<>(listanombreciudades.size());
         //Por cada ciudad en la lista de nombres de ciudades, se crea un objeto ciudad y se agrega a la lista de ciudades
         for (String ciudad : listanombreciudades) {
-            Ciudad nuevaciudad = new Ciudad(ciudad);
+            int indiceciudad =listanombreciudades.indexOf(ciudad);
+            Ciudad nuevaciudad = new Ciudad(ciudad, listacantidadhabitantes.get(indiceciudad));
             listadeciudades.add(nuevaciudad);
         }
         return listadeciudades;

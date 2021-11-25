@@ -130,7 +130,8 @@ public class Interfaz extends javax.swing.JFrame {
 
                 int[] resultado = dijkstra.calc(18, inicio, ultimo, ObtenerMatriz(),contratiempos);
 
-                jTextArea3.setText("La distancia más corta entre "+ Selected1 + "\n" + " y " + Selected2  +  " es de: " +resultado +"km"); // Area 1
+                jTextArea3.setText("La distancia más corta entre "+ Selected1 + "\n" + " y "
+                        + Selected2  +  " es de: " +resultado[2] +"km "+"\n\"+y duraría "+ resultado[0]+" horas y "+resultado[1]+" minutos"); // Area 1
                 }
         });
 
@@ -148,21 +149,26 @@ public class Interfaz extends javax.swing.JFrame {
         jButton2.setText("Buscar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) throws IndexOutOfBoundsException{
-                ArrayList<Ciudad> lalistadeciudades = new ArrayList<>(listanombresciudad.size());
+                ArrayList<Ciudad> lalistadeciudades;
 
                 try {
+
                     lalistadeciudades = ObtenerListaCiudades();
+                    String[] StringCiudades = new String[lalistadeciudades.size()+3];
                     jButton2ActionPerformed(evt);
                     String Selected = jComboBox2.getItemAt(jComboBox2.getSelectedIndex());
-                    int laciudad = lalistadeciudades.indexOf(Selected);
+                    int laciudad = listanombresciudad.indexOf(Selected);
                     System.out.println("El indice es "+laciudad);
                     System.out.println("La lista de ciudades tiene "+lalistadeciudades.size()+" elementos");
                     Ciudad ciudadselec = lalistadeciudades.get(laciudad);
                     System.out.println(ciudadselec.getNombre());
                     List<String> loslugares = ciudadselec.getListalugares();
+                    StringCiudades[0]="Los habitantes en la ciudad son: "+ciudadselec.getPoblación();
                     for (String lugar : loslugares){
-                        System.out.println("Los lugares son "+lugar);}
-                    jTextArea1.setText(String.valueOf(loslugares)); // Area 2
+                        int i = loslugares.indexOf(lugar);
+                        StringCiudades[i+1]=lugar+" \n";
+                    }
+                    jTextArea1.setText(String.valueOf(loslugares));
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
