@@ -144,9 +144,9 @@ public class Interfaz extends javax.swing.JFrame {
                 //Se crea la instancia del algoritmo y se llama a la función que realiza
                 //los cálculos con la matriz respectiva
                 Dijkstra dijkstra = new Dijkstra();
-                dijkstra.calc(18, inicio, ultimo, objCiudades.getMatriz());
+                //dijkstra.calc(18, inicio, ultimo, objCiudades.getMatriz());
 
-                jTextArea3.setText(Selected1 + "\n" +  Selected2); // Area 1
+                jTextArea3.setText("La distancia más corta entre esos dos puntos" + "\n" +  "es de: " +dijkstra.calc(18, inicio, ultimo, objCiudades.getMatriz())); // Area 1
                 }
         });
 

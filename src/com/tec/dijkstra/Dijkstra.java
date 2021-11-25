@@ -14,7 +14,7 @@ public class Dijkstra
      * @param end
      * @param matriz
      */
-    public void calc(int nodos,int inicio, int end, double[][] matriz) {
+    public double calc(int nodos,int inicio, int end, double[][] matriz) {
 
         int flag[] = new int[nodos + 1];
         int i = 1;
@@ -57,6 +57,7 @@ public class Dijkstra
             x++;
         }
         System.out.println("Desde :" + inicio + "\t hasta :" + end + "\t el costo mínimo es: " + distance[end] + "\t");
+        return distance[end];
     }
 
     /*public static void main(String args[])
