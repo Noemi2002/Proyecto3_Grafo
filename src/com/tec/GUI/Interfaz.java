@@ -103,15 +103,22 @@ public class Interfaz extends javax.swing.JFrame {
         jButton1.setText("Calcular Ruta");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+                //Lista de las ciudades
                 String[] lista = new String[] {"Liberia", "Nicoya", "Monteverde", "Upala", "La Fortuna", "Guápiles",
                         "Siquirres", "Limón", "Turrialba", "Cartago", "San Isidro de El General", "Buenos Aires", "San Vito",
                         "Golfito", "Punto Jimenez", "Uvita", "Quepos", "Jacó"};
                 ObtenerCiudades objCiudades = null;
+
+                //Se obtienen los valores de los ComboBox
                 String Selected1 = jComboBox1.getItemAt(jComboBox1.getSelectedIndex());
                 String Selected2 = jComboBox3.getItemAt(jComboBox3.getSelectedIndex());
+
+                //Variables para cambiar el nombre los lugares a números, que corresponden a los índices
                 int inicio = 0;
                 int ultimo = 0;
 
+                //Se inicializa la varible para obtener las variables de las ciudades
                 try {
                     objCiudades = new ObtenerCiudades();
                     //ArrayList<Ciudad> lista = objCiudades.ConstruirCiudades();
@@ -122,6 +129,7 @@ public class Interfaz extends javax.swing.JFrame {
                 }
 
 
+                //Se intercambian los nombres por los indices
                 for (int u = 0; u < lista.length; u++){
                     if (lista[u] == Selected1){
                         inicio = u;
@@ -133,6 +141,8 @@ public class Interfaz extends javax.swing.JFrame {
                         ultimo = h;
                     }
                 }
+                //Se crea la instancia del algoritmo y se llama a la función que realiza
+                //los cálculos con la matriz respectiva
                 Dijkstra dijkstra = new Dijkstra();
                 dijkstra.calc(18, inicio, ultimo, objCiudades.getMatriz());
 

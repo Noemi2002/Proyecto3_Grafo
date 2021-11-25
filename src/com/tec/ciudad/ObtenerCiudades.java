@@ -35,9 +35,9 @@ public class ObtenerCiudades {
         DistP distP = new DistP();
         int numerociudades = listadeciudades.size();
         double [][] matriztemp = new double[numerociudades][numerociudades];
-        for (Ciudad ciudad : listadeciudades) {
+       /* for (Ciudad ciudad : listadeciudades) {
             System.out.println(ciudad.getNombre());
-        }
+        }*/
         for (int f =0; f<numerociudades; f++){
             for (int c = 0; c<numerociudades; c++){
                 double distan = distP.getDistanceBetweenPoints(listadeciudades.get(f), listadeciudades.get(c));

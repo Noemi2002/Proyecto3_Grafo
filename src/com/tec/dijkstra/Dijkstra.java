@@ -1,13 +1,21 @@
 package com.tec.dijkstra;
 
-import java.util.*;
+/**
+ * Cálculo de la distancia más corta
+ */
 public class Dijkstra
 {
     public  double distance[] = new double[100];
-    public  double cost[][] = new double[100][100];
 
-
+    /**
+     * Realiza el cálculo sobre la matriz para obtener la ruta más corta
+     * @param nodos
+     * @param inicio
+     * @param end
+     * @param matriz
+     */
     public void calc(int nodos,int inicio, int end, double[][] matriz) {
+
         int flag[] = new int[nodos + 1];
         int i = 1;
         int minpos = 1;
@@ -15,7 +23,7 @@ public class Dijkstra
         int c;
         double minimum;
 
-        //for(i=1;i==nodos;i++)
+        //Se guarda una fila en distance
         while (i < nodos) {
             flag[i] = 0;
             this.distance[i] = matriz[inicio][i];
@@ -24,19 +32,25 @@ public class Dijkstra
         c = 2;
         while (c < nodos) {
             minimum = 99;
+
+            //Intercambia el valor mínimo
             for (k = 1; k < nodos; k++) {
                 if (this.distance[k] < minimum && flag[k] != 1) {
                     minimum = this.distance[i];
                     minpos = k;
                 }
             }
+            //Se cambia un posició de flag a 1
             flag[minpos] = 1;
             c++;
+
+
             for (k = 1; k < nodos; k++) {
                 if (this.distance[minpos] + matriz[minpos][k] < this.distance[k] && flag[k] != 1)
                     this.distance[k] = this.distance[minpos] + matriz[minpos][k];
             }
         }
+        //Immprime el camino más corto desde el origen hasta lugar de llegada
         System.out.println("El camino más corto es: \n");
         int x = 0;
         while (x < end){
