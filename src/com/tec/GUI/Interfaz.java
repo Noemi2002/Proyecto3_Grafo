@@ -3,10 +3,11 @@ package com.tec.GUI;
 import com.tec.ciudad.Ciudad;
 import com.tec.ciudad.ObtenerCiudades;
 import com.tec.dijkstra.Dijkstra;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ContainerEvent;
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 /**
@@ -108,6 +109,7 @@ public class Interfaz extends javax.swing.JFrame {
                 String[] lista = new String[] {"Liberia", "Nicoya", "Monteverde", "Upala", "La Fortuna", "Guápiles",
                         "Siquirres", "Limón", "Turrialba", "Cartago", "San Isidro de El General", "Buenos Aires", "San Vito",
                         "Golfito", "Punto Jimenez", "Uvita", "Quepos", "Jacó"};
+
                 ObtenerCiudades objCiudades = null;
 
                 //Se obtienen los valores de los ComboBox
@@ -170,10 +172,14 @@ public class Interfaz extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
                 try {
+
                     jButton2ActionPerformed(evt);
                     String Selected = jComboBox2.getItemAt(jComboBox2.getSelectedIndex());
+                    Ciudad lig = new Ciudad(Selected);
                     System.out.println(Selected);
-                    jTextArea1.setText(Selected); // Area 2
+
+                    jTextArea1.setText(String.valueOf(lig)); // Area 2
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
@@ -196,7 +202,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         jLabel6.setText("Contratiempos");
 
-        //jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/Imagenes/Mapa.jpg"))); // NOI18N
+        jLabel7.setIcon(new ImageIcon("Imagenes/Mapa.png")); // NOI18N
 
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
@@ -301,10 +307,8 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) throws IOException, InterruptedException {//GEN-FIRST:event_jButton2ActionPerformed
-        String Selected = jComboBox2.getItemAt(jComboBox2.getSelectedIndex());
 
     }
-
 
 //GEN-LAST:event_jButton2ActionPerformed
 
@@ -364,4 +368,17 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
+    /*class backgroundPanel extends JPanel {
+        private Image image;
+
+        @Override
+        public void paint(Graphics g) {
+            image = new ImageIcon(getClass().getResource("C:\\Users\\cmont\\Documents\\TEC\\Semestre 2\\Datos 1\\Rama\\Proyecto3_Grafo\\Imagenes\\Mapa.jpg")).getImage();
+            g.drawImage(image, 0, 0, getWidth(), 500, rootPane);
+            setOpaque(false);
+            super.paint(g);
+        }
+
+
+    }*/
 }
