@@ -3,15 +3,11 @@ package com.tec.GUI;
 import com.tec.ciudad.Ciudad;
 import com.tec.ciudad.ObtenerCiudades;
 import com.tec.dijkstra.Dijkstra;
-
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ContainerEvent;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+
 
 /**
  *
@@ -64,57 +60,29 @@ public class Interfaz extends javax.swing.JFrame {
 
         jLabel2.setText("Ciudad 2");
 
+        //J1
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Liberia", "Nicoya",
                 "Monteverde", "Upala", "La Fortuna", "Guápiles", "Siquirres", "Limón", "Turrialba",
                 "Cartago", "San Isidro de El General", "Buenos Aires", "San Vito",
                 "Golfito", "Punto Jimenez", "Uvita", "Quepos", "Jacó" }));
+
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+
                 jComboBox1ActionPerformed(evt);
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Liberia", "Nicoya",
-                "Monteverde", "Upala", "La Fortuna", "Guápiles", "Siquirres", "Limón", "Turrialba",
-                "Cartago", "San Isidro de El General", "Buenos Aires", "San Vito",
-                "Golfito", "Punto Jimenez", "Uvita", "Quepos", "Jacó" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-
-            private void jComboBox2ActionPerformed(ActionEvent evt) {
-            }
-        });
-
-        jButton1.setText("Calcular Ruta");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ObtenerCiudades objCiudades = null;
-                try {
-                    objCiudades = new ObtenerCiudades();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Dijkstra dijkstra = new Dijkstra();
-                ArrayList<Ciudad> listadeciudades = objCiudades.getCiudades();
-                dijkstra.calc(18, 1, 2, objCiudades.getMatriz());
-
-
-                }
-        });
-
+        //J2
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Liberia", "Nicoya",
                 "Monteverde", "Upala", "La Fortuna", "Guápiles", "Siquirres", "Limón", "Turrialba",
                 "Cartago", "San Isidro de El General", "Buenos Aires", "San Vito",
                 "Golfito", "Punto Jimenez", "Uvita", "Quepos", "Jacó" }));
+
         jComboBox3.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
 
                 jComboBox3ComponentAdded(evt);
-
             }
 
             private void jComboBox3ComponentAdded(ContainerEvent evt) {
@@ -131,6 +99,44 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+
+        jButton1.setText("Calcular Ruta");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ObtenerCiudades objCiudades = null;
+                String Selected1 = jComboBox1.getItemAt(jComboBox1.getSelectedIndex());
+                String Selected2 = jComboBox3.getItemAt(jComboBox3.getSelectedIndex());
+                jTextArea3.setText(Selected1 + "\n" +  Selected2); // Area 1
+                /*
+                try {
+                    objCiudades = new ObtenerCiudades();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Dijkstra dijkstra = new Dijkstra();
+                ArrayList<Ciudad> listadeciudades = objCiudades.getCiudades();
+                dijkstra.calc(18, 1, 2, objCiudades.getMatriz());*/
+
+
+                }
+        });
+
+        //J3
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Liberia", "Nicoya",
+                "Monteverde", "Upala", "La Fortuna", "Guápiles", "Siquirres", "Limón", "Turrialba",
+                "Cartago", "San Isidro de El General", "Buenos Aires", "San Vito",
+                "Golfito", "Punto Jimenez", "Uvita", "Quepos", "Jacó" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+
+            private void jComboBox2ActionPerformed(ActionEvent evt) {
+            }
+        });
+
         jButton2.setText("Buscar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,7 +145,7 @@ public class Interfaz extends javax.swing.JFrame {
                     jButton2ActionPerformed(evt);
                     String Selected = jComboBox2.getItemAt(jComboBox2.getSelectedIndex());
                     System.out.println(Selected);
-                    jTextArea1.setText(Selected);
+                    jTextArea1.setText(Selected); // Area 2
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
