@@ -60,14 +60,20 @@ public class Interfaz extends javax.swing.JFrame {
 
         jLabel2.setText("Ciudad 2");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ciudad 1", "Ciudad 2", "Ciudad 3", "Ciudad 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Liberia", "Nicoya",
+                "Monteverde", "Upala", "La Fortuna", "Guápiles", "Siquirres", "Limón", "Turrialba",
+                "Cartago", "San Isidro de El General", "Buenos Aires", "San Vito",
+                "Golfito", "Punto Jimenez", "Uvita", "Quepos", "Jacó" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ciudad 1", "Ciudad 2", "Ciudad 3", "Ciudad 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Liberia", "Nicoya",
+                "Monteverde", "Upala", "La Fortuna", "Guápiles", "Siquirres", "Limón", "Turrialba",
+                "Cartago", "San Isidro de El General", "Buenos Aires", "San Vito",
+                "Golfito", "Punto Jimenez", "Uvita", "Quepos", "Jacó" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -84,7 +90,10 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Liberia", "Nicoya",
+                "Monteverde", "Upala", "La Fortuna", "Guápiles", "Siquirres", "Limón", "Turrialba",
+                "Cartago", "San Isidro de El General", "Buenos Aires", "San Vito",
+                "Golfito", "Punto Jimenez", "Uvita", "Quepos", "Jacó" }));
         jComboBox3.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
 
