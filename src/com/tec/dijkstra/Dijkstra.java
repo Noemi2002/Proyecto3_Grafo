@@ -1,29 +1,29 @@
 package com.tec.dijkstra;
 
-/**
- * Cálculo de la distancia más corta
- */
+import com.tec.GUI.Interfaz;
+
 public class Dijkstra
 {
+    /*
+    *
+    *  */
     public  double distance[] = new double[100];
+    public  double cost[][] = new double[100][100];
+    private double tiempo;
+    private long horas;
 
-    /**
-     * Realiza el cálculo sobre la matriz para obtener la ruta más corta
-     * @param nodos
-     * @param inicio
-     * @param end
-     * @param matriz
-     */
-    public double calc(int nodos,int inicio, int end, double[][] matriz) {
-
+    public int[] calc(int nodos, int inicio, int end, double[][] matriz, String contratiempos) {
         int flag[] = new int[nodos + 1];
         int i = 1;
         int minpos = 1;
         int k;
         int c;
-        double minimum;
+        double minimum = 0;
+        int[] elminimo = new int[3];
 
-        //Se guarda una fila en distance
+
+
+        //for(i=1;i==nodos;i++)
         while (i < nodos) {
             flag[i] = 0;
             this.distance[i] = matriz[inicio][i];
@@ -32,36 +32,52 @@ public class Dijkstra
         c = 2;
         while (c < nodos) {
             minimum = 99;
-
-            //Intercambia el valor mínimo
             for (k = 1; k < nodos; k++) {
                 if (this.distance[k] < minimum && flag[k] != 1) {
                     minimum = this.distance[i];
                     minpos = k;
                 }
             }
-            //Se cambia un posició de flag a 1
             flag[minpos] = 1;
             c++;
-
-
             for (k = 1; k < nodos; k++) {
                 if (this.distance[minpos] + matriz[minpos][k] < this.distance[k] && flag[k] != 1)
                     this.distance[k] = this.distance[minpos] + matriz[minpos][k];
             }
         }
-        //Immprime el camino más corto desde el origen hasta lugar de llegada
         System.out.println("El camino más corto es: \n");
         int x = 0;
         while (x < end){
             x++;
         }
-        System.out.println("Desde :" + inicio + "\t hasta :" + end + "\t el costo mínimo es: " + distance[end] + "\t");
-        return distance[end];
+
+
+            int tiempoExtra = ObtenerAtraso(contratiempos);
+            tiempo = distance[end]/80;//1.35
+            horas = (long)tiempo;
+            AjustarMinutos(tiempoExtra, horas);
+            double mins = (tiempo - horas)*60+tiempoExtra;
+
+
+
+            System.out.println("El tiempo es de: " + horas + ":" + mins);
+            elminimo[0]=(int)horas;
+            elminimo[1]=(int)mins;
+            elminimo[2]= (int)distance[end];
+        return elminimo;
     }
 
-    /*
-                {{0.0, 75.78, 78.31, 54.98, 89.26, 186.67, 219.54, 272.08, 208.98, 187.57, 237.44, 282.79, 337.36, 340.5, 330.99, 248.22, 193.65, 144.15},
+    /*public static void main(String args[])
+    {
+        Dijkstra d = new Dijkstra();
+        int node = 4;
+        int verticeInicial = 2;
+        double[][] graph = {{0, 3, 999, 7},
+                {3, 0, 4, 2},
+                {999, 4, 0, 5},
+                {7, 2, 5,0}};
+        /*double[][] graph = {
+                {0.0, 75.78, 78.31, 54.98, 89.26, 186.67, 219.54, 272.08, 208.98, 187.57, 237.44, 282.79, 337.36, 340.5, 330.99, 248.22, 193.65, 144.15},
                 {75.78, 0.0, 67.87, 110.94, 96.47, 174.01, 202.91, 253.68, 183.73, 158.11, 193.49, 238.79, 290.58, 288.38, 275.4, 198.39, 143.37, 88.8},
                 {78.38, 67.82, 0.0, 72.41, 29.36, 113.73, 145.47, 197.94, 131.99, 109.61, 159.82, 204.96, 259.78, 264.15, 255.99, 171.92, 118.71, 76.22},
                 {54.95, 110.91, 72.39, 0.0, 62.88, 154.2, 187.15, 238.23, 183.0, 166.42, 223.35, 266.52, 321.59, 329.32, 323.34, 238.43, 188.0, 148.61},
@@ -80,5 +96,30 @@ public class Dijkstra
                 {194.03, 143.56, 118.82, 188.21, 126.83, 96.18, 103.11, 137.9, 74.79, 55.14, 51.67, 95.9, 147.5, 147.48, 137.7, 55.51, 0.0, 54.68},
                 {144.32, 88.87, 76.24, 148.66, 94.38, 112.77, 133.14, 178.29, 108.16, 82.05, 105.46, 150.39, 201.95, 200.51, 188.78, 109.72, 54.65, 0.0}};
         */
+        //d.calc(node,verticeInicial, 2, graph);
+        /*int nodes,source,i,j;
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the Number of Nodes \n");
+        nodes = in.nextInt();
+        //nodes = 4;
+        Dijkstra d = new Dijkstra();
+        System.out.println("Enter the Cost Matrix Weights: \n");
+        for(i=1;i<=nodes;i++)
+            for(j=1;j<=nodes;j++)
+            {
+                d.cost[i][j]=in.nextDouble();
+                if(d.cost[i][j]==0)
+                    d.cost[i][j]=999;
+            }
+        System.out.println("Enter the Source Vertex :\n");
+        source=in.nextInt();*/
 
+        //d.calc(nodes,source);
+        //System.out.println("The Shortest Path from Source \t"+verticeInicial+"\t to all other vertices are : \n");
+        //for(int i=1; i<=node; i++)
+          //  if(i!=verticeInicial)
+            //    System.out.println("source :"+verticeInicial+"\t destination :"+i+"\t MinCost is :"+d.distance[i]+"\t");
+
+
+   // }*/
 }

@@ -128,7 +128,7 @@ public class Interfaz extends javax.swing.JFrame {
                 //los cálculos con la matriz respectiva
                 Dijkstra dijkstra = new Dijkstra();
 
-                double resultado = dijkstra.calc(18, inicio, ultimo, ObtenerMatriz());
+                int[] resultado = dijkstra.calc(18, inicio, ultimo, ObtenerMatriz(),contratiempos);
 
                 jTextArea3.setText("La distancia más corta entre "+ Selected1 + "\n" + " y " + Selected2  +  " es de: " +resultado +"km"); // Area 1
                 }
