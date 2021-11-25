@@ -3,6 +3,8 @@ package com.tec.GUI;
 import com.tec.ciudad.Ciudad;
 import com.tec.ciudad.ObtenerCiudades;
 import com.tec.dijkstra.Dijkstra;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ContainerEvent;
 import java.io.IOException;
@@ -182,7 +184,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         jLabel6.setText("Contratiempos");
 
-        //jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/Imagenes/Mapa.jpg"))); // NOI18N
+        jLabel7.setIcon(new ImageIcon(("Imagenes/Mapa.png"))); // NOI18N
 
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
