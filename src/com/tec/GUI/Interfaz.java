@@ -62,20 +62,24 @@ public class Interfaz extends javax.swing.JFrame {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        // Se obtiene la lista de ciudades
         List<String> listanombresciudad = ObtenerNombresCiudades(listadeciudades);
         String[] CadenaNombresString = ObtenerCadenaString(listanombresciudad);
         System.out.println(CadenaNombresString);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        // Se definen las areas de texto
+
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jLabel1.setText("Ciudad 1");
+        jTextArea3.setColumns(20);
+        jTextArea3.setRows(5);
+        jScrollPane3.setViewportView(jTextArea3);
 
-        jLabel2.setText("Ciudad 2");
 
-        //J1
+        //J1 Lista desplegable para los nombres de ciudades 1
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(CadenaNombresString));
 
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +89,7 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
-        //J2
+        //J2 Lista desplegable para los nombres de ciudades 2
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(CadenaNombresString));
 
         jComboBox3.addContainerListener(new java.awt.event.ContainerAdapter() {
@@ -108,6 +112,7 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        // Botón para iniciar el cálculo
 
         jButton1.setText("Calcular Ruta");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -131,11 +136,11 @@ public class Interfaz extends javax.swing.JFrame {
                 int[] resultado = dijkstra.calc(18, inicio, ultimo, ObtenerMatriz(),contratiempos);
 
                 jTextArea3.setText("La distancia más corta entre "+ Selected1 + "\n" + " y "
-                        + Selected2  +  " es de: " +resultado[2] +"km "+"\n\"+y duraría "+ resultado[0]+" horas y "+resultado[1]+" minutos"); // Area 1
+                        + Selected2  +  " es de: " +resultado[2] +"km " + "\n" +  "y duraría " + resultado[0]+" horas y "+resultado[1]+" minutos"); // Area 1
                 }
         });
 
-        //J3
+        //J3 Lista desplegable para los nombres de ciudades 3
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(CadenaNombresString));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +151,8 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+
+        // Botón para iniciar la busqueda de los lugares para la ciudad elegida
         jButton2.setText("Buscar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) throws IndexOutOfBoundsException{
@@ -177,13 +184,21 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Consulta");
+
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
+
+        // Se definen algunos labels
+
+        jLabel3.setText("Consulta");
+
+        jLabel1.setText("Ciudad 1");
+
+        jLabel2.setText("Ciudad 2");
 
         jLabel4.setText("Ayuda al viajero");
 
@@ -193,11 +208,9 @@ public class Interfaz extends javax.swing.JFrame {
 
         jLabel7.setIcon(new ImageIcon(("Imagenes/Mapa.png"))); // NOI18N
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
-
         jLabel8.setText("Minutos");
+
+        // Se agregan todos los componentes
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -291,12 +304,7 @@ public class Interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) throws IOException, InterruptedException {//GEN-FIRST:event_jButton2ActionPerformed
-        String Selected = jComboBox2.getItemAt(jComboBox2.getSelectedIndex());
 
     }
     public ArrayList<Ciudad> ObtenerListaCiudades() throws IOException, InterruptedException {
